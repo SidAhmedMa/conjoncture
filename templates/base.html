@@ -7,8 +7,8 @@
 <meta name="description" content="{{ description|e }}">
 <link rel="canonical" href="{{ canonical|e }}">
 {{#if noindex}}<meta name="robots" content="noindex, nofollow">{{/if}}
-<meta name="theme-color" content="#0e1e3c" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#08142b" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#1c2c3a" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1a25" media="(prefers-color-scheme: dark)">
 
 <meta property="og:type" content="{{ og_type|e }}">
 <meta property="og:site_name" content="{{ site_title|e }}">
@@ -38,11 +38,7 @@
   <div class="masthead__top">
     <div class="wrap masthead__row">
       <a class="brand" href="{{ base }}/" aria-label="{{ site_title|e }} — accueil">
-        {{#if logo_lockup}}{{ logo_lockup }}{{else}}{{ logo_mark }}
-        <span class="brand__lockup">
-          {{ logo_wordmark }}
-          <span class="brand__tagline">{{ tagline|e }}</span>
-        </span>{{/if}}
+        {{ brand }}
       </a>
       <div class="masthead__tools">
         <button class="tool" type="button" data-search-open aria-label="Rechercher">{{ icon_search }}<span class="tool__label">Rechercher</span></button>
@@ -71,7 +67,7 @@
   <div class="wrap">
     <div class="footer__top">
       <div class="footer__brand">
-        {{#if logo_lockup_light}}{{ logo_lockup_light }}{{else}}{{ logo_mark_light }}{{/if}}
+        {{ brand_footer }}
         <p class="footer__note">{{ footer_note|e }}</p>
         <ul class="social">{{ social_links }}</ul>
       </div>

@@ -33,7 +33,7 @@ ROOT = Path(__file__).resolve().parent
 DIST = ROOT / "dist"
 
 FAVICON = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-<circle cx="32" cy="32" r="32" fill="#0e1e3c"/>
+<circle cx="32" cy="32" r="32" fill="#1c2c3a"/>
 <text x="32" y="41" text-anchor="middle" fill="#ffffff" font-size="21"
  letter-spacing="1.2" font-family="Verdana, DejaVu Sans, sans-serif">TCR</text>
 </svg>

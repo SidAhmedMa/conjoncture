@@ -179,6 +179,34 @@ class Renderer:
             return img(normal, "lockup lockup--onlight") + img(dark_bg, "lockup lockup--ondark", True)
         return img(normal or dark_bg, "lockup lockup--auto")
 
+    def brand(self, on_dark=False):
+        """Bloc de marque de l'en-tête ou du pied de page.
+
+        Trois cas, par ordre de priorité : verrouillage complet fourni en
+        fichier ; logotype fourni en fichier, accompagné de l'accroche ; sinon
+        substitut composé en CSS.
+        """
+        lockup = self.logo_lockup(on_dark=on_dark)
+        if lockup:
+            return lockup
+
+        wordmark = self.logo_wordmark(on_dark=on_dark)
+        if wordmark:
+            if on_dark:
+                return wordmark
+            return (
+                f'{wordmark}<span class="brand__aside">'
+                f'<span class="brand__tagline">{html.escape(self.site.tagline)}</span></span>'
+            )
+
+        if on_dark:
+            return self.logo_mark(" mark--light")
+        return (
+            f'{self.logo_mark()}<span class="brand__lockup">'
+            f'<span class="wordmark">{html.escape(self.site.title)}</span>'
+            f'<span class="brand__tagline">{html.escape(self.site.tagline)}</span></span>'
+        )
+
     def logo_mark(self, variant=""):
         src = self.logo_file("logo-mark")
         if src:
@@ -191,14 +219,20 @@ class Renderer:
             f'{html.escape(self.site.short_title)}</span></span>'
         )
 
-    def logo_wordmark(self):
-        src = self.logo_file("logo-wordmark")
-        if src:
-            return (
-                f'<img class="wordmark wordmark--img" src="{html.escape(src, quote=True)}" '
-                f'alt="{html.escape(self.site.title, quote=True)}" height="22">'
-            )
-        return f'<span class="wordmark">{html.escape(self.site.title)}</span>'
+    def logo_wordmark(self, on_dark=False):
+        """Logotype fourni en fichier, ou chaîne vide s'il n'y en a pas."""
+        light = self.logo_file("logo-wordmark-light")
+        normal = self.logo_file("logo-wordmark")
+        if on_dark:
+            src, css = (light, "wordmark--img") if light else (normal, "wordmark--img wordmark--invert")
+        else:
+            src, css = normal, "wordmark--img"
+        if not src:
+            return ""
+        return (
+            f'<img class="wordmark {css}" src="{html.escape(src, quote=True)}" '
+            f'alt="{html.escape(self.site.title, quote=True)}">'
+        )
 
     def nav_links(self, current=""):
         out = []
@@ -274,11 +308,8 @@ class Renderer:
                 "body_class": body_class,
                 "content": content,
                 "nav_links": self.nav_links(current),
-                "logo_lockup": self.logo_lockup(),
-                "logo_lockup_light": self.logo_lockup(on_dark=True),
-                "logo_mark": self.logo_mark(),
-                "logo_mark_light": self.logo_mark(" mark--light"),
-                "logo_wordmark": self.logo_wordmark(),
+                "brand": self.brand(),
+                "brand_footer": self.brand(on_dark=True),
                 "footer_note": self.site.get("footer_note", ""),
                 "footer_cols": self.footer_cols(),
                 "social_links": self.social_links(),

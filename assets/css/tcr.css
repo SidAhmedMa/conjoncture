@@ -7,7 +7,7 @@
 
 /* --- 1. Jetons ----------------------------------------------------------- */
 :root {
-  --navy-900:#08142b; --navy-800:#0e1e3c; --navy-700:#16294b; --navy-600:#22406e;
+  --navy-900:#0f1a25; --navy-800:#1c2c3a; --navy-700:#263b4e; --navy-600:#31536f;
   --slate-500:#4a6178; --gold-600:#a9761f; --gold-500:#c9922e; --gold-200:#f0dcb4;
 
   --paper:#ffffff; --paper-2:#f7f6f3; --paper-3:#edebe6;
@@ -144,6 +144,16 @@ hr{border:0}
   padding-left:.85rem;border-left:1px solid var(--line-2)}
 .wordmark{font-family:var(--font-display);font-size:clamp(.75rem,1.5vw,.9375rem);font-weight:400;
   letter-spacing:.16em;text-transform:uppercase;color:var(--ink);white-space:nowrap}
+.wordmark--img{height:clamp(1.9rem,3vw,2.5rem);width:auto;max-width:min(17rem,44vw);
+  object-fit:contain;object-position:left center}
+.wordmark--invert{filter:brightness(0) invert(1)}
+.brand__aside{display:flex;align-items:center;padding-left:clamp(.7rem,1.6vw,1.1rem);
+  margin-left:clamp(.7rem,1.6vw,1.1rem);border-left:1px solid var(--line-2);align-self:stretch}
+.brand__aside .brand__tagline{white-space:normal;max-width:15rem;line-height:1.45}
+.footer__brand .wordmark--img{height:2.4rem;max-width:15rem;margin-bottom:.35rem}
+:root[data-theme="dark"] .masthead .wordmark--img{filter:brightness(0) invert(1)}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .masthead .wordmark--img{filter:brightness(0) invert(1)}}
 .brand__tagline{font-size:.6875rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
   color:var(--muted);white-space:nowrap}
 .masthead__tools{display:flex;align-items:center;gap:.4rem;flex:none}
@@ -553,6 +563,9 @@ blockquote{margin:0;padding-left:1.35rem;border-left:3px solid var(--accent);
   .grid--lead .card__media .media__img,.grid--lead .card__media .media__ph{min-height:0;aspect-ratio:16/9}
   .arch__row a{grid-template-columns:minmax(0,1fr);gap:.3rem;padding-block:1.1rem}
   .arch__min{text-align:left}
+}
+@media (max-width:900px){
+  .brand__aside{display:none}
 }
 @media (max-width:720px){
   .brand__tagline{display:none}
