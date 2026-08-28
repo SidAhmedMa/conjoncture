@@ -40,9 +40,10 @@ jobs:
           echo "Publication vers ${TCR_URL}${TCR_BASE:+/$TCR_BASE}/"
           python3 build.py
 
+      # GitHub Pages doit être activé une fois pour le dépôt, en mode
+      # « GitHub Actions » (Settings → Pages). Le jeton du workflow n'a pas
+      # le droit de créer le site lui-même.
       - uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - uses: actions/upload-pages-artifact@v3
         with:
