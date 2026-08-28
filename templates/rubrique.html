@@ -1,0 +1,26 @@
+<section class="pagehead" style="--accent: {{ accent }}">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Fil d'Ariane"><a href="{{ base }}/">Accueil</a><span aria-hidden="true">/</span><span aria-current="page">{{ rubrique_name|e }}</span></nav>
+    <div class="pagehead__row">
+      <span class="pagehead__icon">{{ icon_big }}</span>
+      <div>
+        <h1 class="pagehead__title">{{ rubrique_name|e }}</h1>
+        <p class="pagehead__keywords">{{ keywords|e }}</p>
+      </div>
+    </div>
+    <p class="pagehead__desc">{{ rubrique_desc|e }}</p>
+    <p class="pagehead__count">{{ count_label|e }}</p>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <h2 class="sr-only">Articles de la rubrique</h2>
+    {{#if lead}}<div class="lead">{{ lead }}</div>{{/if}}
+    {{#if cards}}<div class="grid grid--3">{{ cards }}</div>{{/if}}
+    {{#if !cards}}{{#if !lead}}<p class="empty">Aucun article publié dans cette rubrique pour le moment.</p>{{/if}}{{/if}}
+    {{ pagination }}
+  </div>
+</section>
+
+{{ newsletter }}

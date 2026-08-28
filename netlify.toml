@@ -1,0 +1,19 @@
+# Déploiement Netlify — aucune dépendance à installer.
+[build]
+  command = "python3 build.py"
+  publish = "dist"
+
+[build.environment]
+  PYTHON_VERSION = "3.11"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

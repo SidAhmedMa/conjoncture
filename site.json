@@ -1,0 +1,88 @@
+{
+  "title": "The Conjoncture Review",
+  "short_title": "TCR",
+  "tagline": "Insights on Energy, Infrastructure and Economy.",
+  "tagline_fr": "Interpréter les points de bascule de l'économie mondiale.",
+  "description": "Revue économique stratégique : analyses structurées sur l'économie, les infrastructures, l'énergie et les flux d'investissement — de la Mauritanie à l'Afrique de l'Ouest, à la Méditerranée et à l'Europe.",
+  "url": "https://theconjoncturereview.com",
+  "base": "",
+  "lang": "fr",
+  "locale": "fr_FR",
+  "email": "redaction@theconjoncturereview.com",
+  "portee_default": "Mauritanie & International",
+  "per_page": 12,
+  "social": [
+    {
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/company/the-conjoncture-review",
+      "icon": "linkedin"
+    },
+    {
+      "name": "X",
+      "url": "https://x.com/conjoncturerev",
+      "icon": "x"
+    },
+    {
+      "name": "Flux RSS",
+      "url": "/flux.xml",
+      "icon": "rss"
+    }
+  ],
+  "rubriques": [
+    {
+      "slug": "economie",
+      "name": "Économie",
+      "keywords": "Macroéconomie • Finance • Commerce • Investissement • Politique économique",
+      "description": "Croissance, budget, dette, inflation, commerce extérieur et politique économique : lecture des grands équilibres et de leurs effets concrets.",
+      "accent": "#1F4E8C",
+      "icon": "economie"
+    },
+    {
+      "slug": "energie",
+      "name": "Énergie",
+      "keywords": "Pétrole & gaz • Électricité • Renouvelables • Hydrogène • Transition énergétique",
+      "description": "De l'amont pétrolier et gazier au réseau électrique, jusqu'à l'hydrogène vert : les projets, les capitaux et les arbitrages de la transition.",
+      "accent": "#C9822B",
+      "icon": "energie"
+    },
+    {
+      "slug": "infrastructures",
+      "name": "Infrastructures",
+      "keywords": "Ports • Transport • Logistique • Construction • Infrastructures urbaines",
+      "description": "Ports, corridors, routes, logistique et aménagement urbain : ce qui se construit, à quel coût et pour quel rendement.",
+      "accent": "#2C7A72",
+      "icon": "infrastructures"
+    },
+    {
+      "slug": "mines-industrie",
+      "name": "Mines & Industrie",
+      "keywords": "Fer • Or • Cuivre • Projets miniers • Industrie • Transformation",
+      "description": "Fer, or, cuivre et terres rares : cycles d'investissement, décisions finales, montée en puissance industrielle et transformation locale.",
+      "accent": "#A65437",
+      "icon": "mines"
+    },
+    {
+      "slug": "tcr-insights",
+      "name": "TCR Insights",
+      "keywords": "Analyses • Décryptages • Interviews • Data • Grands projets • Perspectives",
+      "description": "Le travail de fond de la rédaction : décryptages longs, séries de données, entretiens et suivi des grands projets.",
+      "accent": "#5B4B8A",
+      "icon": "insights"
+    }
+  ],
+  "footer_note": "Revue économique stratégique consacrée aux forces qui façonnent la croissance, l'investissement et le développement. Interpréter plutôt que rapporter.",
+  "legal_links": [
+    {
+      "label": "À propos",
+      "url": "/a-propos/"
+    },
+    {
+      "label": "Contact",
+      "url": "/contact/"
+    },
+    {
+      "label": "Mentions légales",
+      "url": "/mentions-legales/"
+    }
+  ]
+}

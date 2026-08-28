@@ -1,0 +1,13 @@
+<section class="hero" style="--accent: {{ accent }}">
+  <div class="hero__text">
+    <div class="hero__textInner">
+      {{ chip }}
+      <h1 class="hero__title"><a href="{{ url }}">{{ title|e }}</a></h1>
+      <hr class="hero__rule">
+      <p class="hero__chapeau">{{ chapeau|e }}</p>
+      {{ metarow }}
+      <a class="btn btn--solid hero__cta" href="{{ url }}">Lire l'article {{ icon_arrow }}</a>
+    </div>
+  </div>
+  <div class="hero__media">{{ media }}<span class="hero__bracket" aria-hidden="true"></span></div>
+</section>

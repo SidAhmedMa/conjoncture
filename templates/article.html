@@ -1,0 +1,43 @@
+<article class="article" style="--accent: {{ accent }}">
+  <header class="article__head">
+    <div class="wrap wrap--narrow">
+      <nav class="crumbs" aria-label="Fil d'Ariane"><a href="{{ base }}/">Accueil</a><span aria-hidden="true">/</span><a href="{{ rubrique_url }}">{{ rubrique_name|e }}</a></nav>
+      {{ chip }}
+      <h1 class="article__title">{{ title|e }}</h1>
+      <hr class="article__rule">
+      {{#if chapeau}}<p class="article__chapeau">{{ chapeau|e }}</p>{{/if}}
+      {{ metarow }}
+      <p class="article__byline">{{ icon_pen }} Par <strong>{{ auteur|e }}</strong></p>
+    </div>
+  </header>
+
+  {{#if figure}}<div class="wrap article__figure">{{ figure }}</div>{{/if}}
+
+  <div class="wrap article__grid">
+    <aside class="rail">
+      {{#if toc}}<nav class="toc" aria-labelledby="toc-titre"><p class="toc__title" id="toc-titre">Sommaire</p>{{ toc }}</nav>{{/if}}
+      <div class="share">
+        <p class="share__title">Partager</p>
+        <ul class="share__list">{{ share_links }}</ul>
+      </div>
+    </aside>
+    <div class="prose">
+      {{ body }}
+      {{#if tags}}<ul class="tags">{{ tags }}</ul>{{/if}}
+    </div>
+  </div>
+</article>
+
+{{#if related}}
+<section class="band band--tint">
+  <div class="wrap">
+    <div class="sechead sechead--plain">
+      <div class="sechead__main"><h2 class="eyebrow">À lire également</h2></div>
+      <a class="sechead__more" href="{{ rubrique_url }}">Toute la rubrique {{ icon_arrow }}</a>
+    </div>
+    <div class="grid grid--3">{{ related }}</div>
+  </div>
+</section>
+{{/if}}
+
+{{ newsletter }}

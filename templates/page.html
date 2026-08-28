@@ -1,0 +1,12 @@
+<section class="pagehead pagehead--simple">
+  <div class="wrap wrap--narrow">
+    <nav class="crumbs" aria-label="Fil d'Ariane"><a href="{{ base }}/">Accueil</a><span aria-hidden="true">/</span><span aria-current="page">{{ title|e }}</span></nav>
+    <h1 class="pagehead__title">{{ title|e }}</h1>
+    {{#if chapeau}}<p class="pagehead__desc">{{ chapeau|e }}</p>{{/if}}
+  </div>
+</section>
+<section class="band">
+  <div class="wrap wrap--narrow">
+    <div class="prose">{{ body }}</div>
+  </div>
+</section>

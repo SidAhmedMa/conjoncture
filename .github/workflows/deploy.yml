@@ -1,0 +1,59 @@
+# Construit le site et le publie sur GitHub Pages à chaque poussée sur main.
+#
+# Déploiement de RELECTURE par défaut : TCR_NOINDEX demande aux moteurs de
+# recherche de ne pas indexer le site, et l'URL est celle de GitHub Pages.
+# Pour passer en production sur votre domaine, supprimez le bloc « env » de
+# l'étape de construction : site.json reprend alors la main.
+name: Déployer le site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Construire le site
+        env:
+          TCR_NOINDEX: "1"
+        run: |
+          owner=$(echo "${GITHUB_REPOSITORY_OWNER}" | tr '[:upper:]' '[:lower:]')
+          export TCR_URL="https://${owner}.github.io"
+          export TCR_BASE="${GITHUB_REPOSITORY#*/}"
+          echo "Publication vers ${TCR_URL}${TCR_BASE:+/$TCR_BASE}/"
+          python3 build.py
+
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

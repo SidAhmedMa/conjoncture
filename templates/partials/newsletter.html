@@ -1,0 +1,15 @@
+<section class="band band--news" id="newsletter">
+  <div class="wrap news">
+    <div class="news__text">
+      <p class="eyebrow">La lettre TCR</p>
+      <h2 class="news__title">Recevez nos analyses</h2>
+      <p class="news__body">Chaque semaine, l'essentiel de l'énergie, des infrastructures, des mines et de l'économie — décrypté par la rédaction.</p>
+    </div>
+    <form class="news__form" action="{{ newsletter_action }}" method="post" data-newsletter>
+      <label class="sr-only" for="news-email">Adresse e-mail</label>
+      <input class="news__input" id="news-email" name="email" type="email" required placeholder="vous@exemple.com" autocomplete="email">
+      <button class="btn btn--gold" type="submit">S'abonner {{ icon_arrow }}</button>
+      <p class="news__legal">Pas de spam. Désabonnement en un clic.</p>
+    </form>
+  </div>
+</section>

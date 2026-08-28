@@ -1,0 +1,14 @@
+<section class="pagehead pagehead--simple">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Fil d'Ariane"><a href="{{ base }}/">Accueil</a><span aria-hidden="true">/</span><span aria-current="page">Archives</span></nav>
+    <h1 class="pagehead__title">Archives</h1>
+    <p class="pagehead__desc">{{ count_label|e }} — l'intégralité des publications de The Conjoncture Review, de la plus récente à la plus ancienne.</p>
+    <div class="filters" data-filters>
+      <button class="filters__btn is-active" type="button" data-filter="all">Toutes</button>
+      {{ filter_buttons }}
+    </div>
+  </div>
+</section>
+<section class="band">
+  <div class="wrap">{{ years }}</div>
+</section>

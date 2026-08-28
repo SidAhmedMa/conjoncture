@@ -1,0 +1,5 @@
+<ul class="metarow">
+  <li class="metarow__item">{{ icon_calendar }}<span class="metarow__stack"><span class="metarow__label">Date</span><span class="metarow__value"><time datetime="{{ date_iso }}">{{ date_label|e }}</time></span></span></li>
+  <li class="metarow__item">{{ icon_clock }}<span class="metarow__stack"><span class="metarow__label">Temps de lecture</span><span class="metarow__value">{{ lecture }} min</span></span></li>
+  {{#if portee}}<li class="metarow__item">{{ icon_globe }}<span class="metarow__stack"><span class="metarow__label">Portée</span><span class="metarow__value">{{ portee|e }}</span></span></li>{{/if}}
+</ul>

@@ -1,0 +1,23 @@
+{{ hero }}
+
+<section class="band">
+  <div class="wrap">
+    <div class="sechead sechead--plain">
+      <div class="sechead__main"><h2 class="eyebrow">Dernières publications</h2></div>
+      <a class="sechead__more" href="{{ base }}/archives/">Toutes les archives {{ icon_arrow }}</a>
+    </div>
+    <div class="latest">
+      <div class="latest__grid">{{ latest_cards }}</div>
+      <aside class="fil" aria-labelledby="fil-titre">
+        <h2 class="fil__title" id="fil-titre">Le fil TCR</h2>
+        <div class="fil__list">{{ fil }}</div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+{{ rubrique_sections }}
+
+{{ insights_band }}
+
+{{ newsletter }}

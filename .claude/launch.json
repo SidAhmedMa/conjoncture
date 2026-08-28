@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "tcr",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["build.py", "--serve", "--watch", "--port", "8321"],
+      "port": 8321
+    }
+  ]
+}

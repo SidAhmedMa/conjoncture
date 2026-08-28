@@ -1,0 +1,7 @@
+<article class="tease" style="--accent: {{ accent }}">
+  <a class="tease__link" href="{{ url }}">
+    <span class="tease__rub">{{ rubrique_name|e }}</span>
+    <h3 class="tease__title">{{ title|e }}</h3>
+    <span class="tease__foot"><time datetime="{{ date_iso }}">{{ date_short|e }}</time><span class="sep" aria-hidden="true">·</span>{{ lecture }} min</span>
+  </a>
+</article>

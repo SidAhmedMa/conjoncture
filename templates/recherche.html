@@ -1,0 +1,15 @@
+<section class="pagehead pagehead--simple">
+  <div class="wrap wrap--narrow">
+    <nav class="crumbs" aria-label="Fil d'Ariane"><a href="{{ base }}/">Accueil</a><span aria-hidden="true">/</span><span aria-current="page">Recherche</span></nav>
+    <h1 class="pagehead__title">Recherche</h1>
+    <p class="pagehead__desc">Retrouvez un article par titre, rubrique, mot-clé ou projet.</p>
+    <form class="searchpage" role="search" data-searchpage>
+      <label class="sr-only" for="q">Votre recherche</label>
+      {{ icon_search }}
+      <input type="search" id="q" name="q" class="searchpage__input" placeholder="El Aouj, hydrogène, port de Nouakchott…" autocomplete="off">
+    </form>
+  </div>
+</section>
+<section class="band">
+  <div class="wrap"><div class="searchpage__results" data-searchpage-results aria-live="polite"></div></div>
+</section>

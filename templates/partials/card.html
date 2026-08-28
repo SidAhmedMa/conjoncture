@@ -1,0 +1,9 @@
+<article class="card" style="--accent: {{ accent }}">
+  <a class="card__media" href="{{ url }}" tabindex="-1" aria-hidden="true">{{ media }}</a>
+  <div class="card__body">
+    {{ chip }}
+    <h3 class="card__title"><a href="{{ url }}">{{ title|e }}</a></h3>
+    <p class="card__excerpt">{{ excerpt|e }}</p>
+    <p class="card__foot"><time datetime="{{ date_iso }}">{{ date_short|e }}</time><span class="sep" aria-hidden="true">·</span><span>{{ lecture }} min</span></p>
+  </div>
+</article>
