@@ -163,13 +163,37 @@ Le dossier `dist/` est un site statique complet : il se publie tel quel.
 - **Netlify** — `netlify.toml` est fourni ; commande `python3 build.py`,
   répertoire publié `dist`.
 - **GitHub Pages** — `.github/workflows/deploy.yml` construit et publie à chaque
-  poussée sur `main`. Activez Pages en mode « GitHub Actions » dans les réglages
-  du dépôt.
+  poussée sur `main`. Pages doit être activé **une fois** en mode « GitHub
+  Actions » (Settings → Pages) : le jeton du workflow n'a pas le droit de créer
+  le site lui-même.
+
+  Site de relecture en ligne : <https://sidahmedma.github.io/conjoncture/>
 - **Hébergement classique** — `python3 build.py`, puis transférez `dist/`.
 
 Avant la mise en ligne, ajustez `"url"` dans `site.json` : cette valeur alimente
 les liens canoniques, le flux RSS, le sitemap et les métadonnées de partage.
 Pour un déploiement dans un sous-répertoire, renseignez `"base": "/sous-dossier"`.
+
+### Déploiements de relecture
+
+Trois variables d'environnement surchargent `site.json` le temps d'une
+construction, sans le modifier — pratique pour une préproduction ou une version
+soumise à relecture :
+
+| Variable | Effet | Exemple |
+|---|---|---|
+| `TCR_URL` | origine seule, sans chemin | `https://exemple.github.io` |
+| `TCR_BASE` | sous-répertoire de publication | `/conjoncture` |
+| `TCR_NOINDEX` | à `1`, ajoute `noindex` et bloque `robots.txt` | `1` |
+
+```bash
+TCR_URL="https://exemple.github.io" TCR_BASE="/conjoncture" TCR_NOINDEX=1 python3 build.py
+```
+
+Le workflow GitHub Pages les renseigne automatiquement : le site publié n'est
+donc **pas indexable** par les moteurs de recherche. Pour passer en production
+sur votre domaine, supprimez le bloc `env:` de l'étape de construction dans
+`.github/workflows/deploy.yml` — `site.json` reprend alors la main.
 
 ---
 
