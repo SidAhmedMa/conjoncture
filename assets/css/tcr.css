@@ -125,6 +125,21 @@ hr{border:0}
 .mark--light{background:#fff}
 .mark--light .mark__text{color:var(--navy-800)}
 .mark--img{border-radius:50%;object-fit:cover}
+
+/* Verrouillage de marque fourni en fichier (assets/img/logo-lockup.*) */
+.lockup{height:clamp(2.1rem,3.4vw,2.9rem);width:auto;max-width:min(26rem,54vw);
+  object-fit:contain;object-position:left center}
+.lockup--footer{height:2.6rem;max-width:20rem;margin-bottom:.25rem}
+.lockup--invert{filter:brightness(0) invert(1)}
+.lockup--ondark{display:none}
+:root[data-theme="dark"] .lockup--auto{filter:brightness(0) invert(1)}
+:root[data-theme="dark"] .lockup--onlight{display:none}
+:root[data-theme="dark"] .lockup--ondark{display:block}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .lockup--auto{filter:brightness(0) invert(1)}
+  :root:not([data-theme="light"]) .lockup--onlight{display:none}
+  :root:not([data-theme="light"]) .lockup--ondark{display:block}}
+@media (max-width:400px){.lockup{max-width:62vw}}
 .brand__lockup{display:flex;flex-direction:column;gap:.2rem;min-width:0;
   padding-left:.85rem;border-left:1px solid var(--line-2)}
 .wordmark{font-family:var(--font-display);font-size:clamp(.75rem,1.5vw,.9375rem);font-weight:400;

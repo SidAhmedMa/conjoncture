@@ -168,6 +168,39 @@ Le dossier `dist/` est un site statique complet : il se publie tel quel.
   le site lui-même.
 
   Site de relecture en ligne : <https://sidahmedma.github.io/conjoncture/>
+
+#### Passer sur un domaine personnalisé
+
+Le workflow bascule tout seul dès qu'un fichier `CNAME` existe à la racine du
+dépôt : publication à la racine du domaine au lieu du sous-répertoire, liens
+canoniques, flux RSS et sitemap suivent.
+
+1. Enregistrez le domaine chez le bureau d'enregistrement de votre choix.
+2. Créez ces enregistrements DNS :
+
+   | Type | Nom | Valeur |
+   |---|---|---|
+   | A | `@` | `185.199.108.153` |
+   | A | `@` | `185.199.109.153` |
+   | A | `@` | `185.199.110.153` |
+   | A | `@` | `185.199.111.153` |
+   | AAAA | `@` | `2606:50c0:8000::153` |
+   | AAAA | `@` | `2606:50c0:8001::153` |
+   | AAAA | `@` | `2606:50c0:8002::153` |
+   | AAAA | `@` | `2606:50c0:8003::153` |
+   | CNAME | `www` | `sidahmedma.github.io.` |
+
+3. Déclarez le domaine et poussez :
+
+   ```bash
+   echo "votre-domaine.com" > CNAME && git add CNAME && git commit -m "Domaine personnalisé" && git push
+   ```
+
+4. Dans Settings → Pages, renseignez le domaine puis cochez **Enforce HTTPS**
+   une fois le certificat délivré (quelques minutes après la propagation DNS).
+
+Tant que le fichier `CNAME` est absent, le site reste publié sur l'URL de projet
+GitHub Pages.
 - **Hébergement classique** — `python3 build.py`, puis transférez `dist/`.
 
 Avant la mise en ligne, ajustez `"url"` dans `site.json` : cette valeur alimente

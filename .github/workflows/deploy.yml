@@ -30,14 +30,23 @@ jobs:
         with:
           python-version: "3.12"
 
+      # Deux modes, choisis automatiquement :
+      #   • fichier CNAME présent  → domaine personnalisé, publication à la racine
+      #   • sinon                  → page de projet, sous-répertoire /<dépôt>/
       - name: Construire le site
         env:
           TCR_NOINDEX: "1"
         run: |
-          owner=$(echo "${GITHUB_REPOSITORY_OWNER}" | tr '[:upper:]' '[:lower:]')
-          export TCR_URL="https://${owner}.github.io"
-          export TCR_BASE="${GITHUB_REPOSITORY#*/}"
-          echo "Publication vers ${TCR_URL}${TCR_BASE:+/$TCR_BASE}/"
+          if [ -f CNAME ]; then
+            domain=$(head -1 CNAME | tr -d '[:space:]')
+            export TCR_URL="https://${domain}"
+            echo "Domaine personnalisé — publication vers ${TCR_URL}/"
+          else
+            owner=$(echo "${GITHUB_REPOSITORY_OWNER}" | tr '[:upper:]' '[:lower:]')
+            export TCR_URL="https://${owner}.github.io"
+            export TCR_BASE="${GITHUB_REPOSITORY#*/}"
+            echo "Page de projet — publication vers ${TCR_URL}/${TCR_BASE}/"
+          fi
           python3 build.py
 
       # GitHub Pages doit être activé une fois pour le dépôt, en mode

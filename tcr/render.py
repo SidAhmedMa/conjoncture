@@ -143,11 +143,47 @@ class Renderer:
 
     # -- enveloppe -----------------------------------------------------------
 
+    LOGO_FORMATS = ("svg", "png", "webp", "jpg", "jpeg")
+
+    def logo_file(self, stem):
+        """URL du premier fichier de logo portant ce nom, tous formats confondus."""
+        folder = self.site.root / "assets" / "img"
+        for ext in self.LOGO_FORMATS:
+            if (folder / f"{stem}.{ext}").exists():
+                return self.site.url(f"/assets/img/{stem}.{ext}")
+        return ""
+
+    def logo_lockup(self, on_dark=False):
+        """Verrouillage complet (pastille + logotype + accroche), s'il est fourni.
+
+        Un seul fichier `logo-lockup.*` suffit : un logo monochrome foncé est
+        éclairci automatiquement sur les fonds sombres. Fournir en plus
+        `logo-lockup-light.*` remplace cette inversion par le fichier dédié.
+        """
+        dark_bg = self.logo_file("logo-lockup-light")
+        normal = self.logo_file("logo-lockup")
+        if not (normal or dark_bg):
+            return ""
+        alt = html.escape(f"{self.site.title} — {self.site.tagline}", quote=True)
+
+        def img(src, css, hidden=False):
+            extra = ' alt="" aria-hidden="true"' if hidden else f' alt="{alt}"'
+            return f'<img class="{css}" src="{html.escape(src, quote=True)}"{extra}>'
+
+        if on_dark:
+            if dark_bg:
+                return img(dark_bg, "lockup lockup--footer")
+            return img(normal, "lockup lockup--footer lockup--invert")
+
+        if dark_bg and normal:
+            return img(normal, "lockup lockup--onlight") + img(dark_bg, "lockup lockup--ondark", True)
+        return img(normal or dark_bg, "lockup lockup--auto")
+
     def logo_mark(self, variant=""):
-        png = self.site.root / "assets" / "img" / "logo-mark.png"
-        if png.exists():
+        src = self.logo_file("logo-mark")
+        if src:
             return (
-                f'<img class="mark mark--img{variant}" src="{self.site.url("/assets/img/logo-mark.png")}" '
+                f'<img class="mark mark--img{variant}" src="{html.escape(src, quote=True)}" '
                 f'alt="{html.escape(self.site.title, quote=True)}" width="44" height="44">'
             )
         return (
@@ -156,10 +192,10 @@ class Renderer:
         )
 
     def logo_wordmark(self):
-        png = self.site.root / "assets" / "img" / "logo-wordmark.png"
-        if png.exists():
+        src = self.logo_file("logo-wordmark")
+        if src:
             return (
-                f'<img class="wordmark wordmark--img" src="{self.site.url("/assets/img/logo-wordmark.png")}" '
+                f'<img class="wordmark wordmark--img" src="{html.escape(src, quote=True)}" '
                 f'alt="{html.escape(self.site.title, quote=True)}" height="22">'
             )
         return f'<span class="wordmark">{html.escape(self.site.title)}</span>'
@@ -238,6 +274,8 @@ class Renderer:
                 "body_class": body_class,
                 "content": content,
                 "nav_links": self.nav_links(current),
+                "logo_lockup": self.logo_lockup(),
+                "logo_lockup_light": self.logo_lockup(on_dark=True),
                 "logo_mark": self.logo_mark(),
                 "logo_mark_light": self.logo_mark(" mark--light"),
                 "logo_wordmark": self.logo_wordmark(),

@@ -38,11 +38,11 @@
   <div class="masthead__top">
     <div class="wrap masthead__row">
       <a class="brand" href="{{ base }}/" aria-label="{{ site_title|e }} — accueil">
-        {{ logo_mark }}
+        {{#if logo_lockup}}{{ logo_lockup }}{{else}}{{ logo_mark }}
         <span class="brand__lockup">
           {{ logo_wordmark }}
           <span class="brand__tagline">{{ tagline|e }}</span>
-        </span>
+        </span>{{/if}}
       </a>
       <div class="masthead__tools">
         <button class="tool" type="button" data-search-open aria-label="Rechercher">{{ icon_search }}<span class="tool__label">Rechercher</span></button>
@@ -71,7 +71,7 @@
   <div class="wrap">
     <div class="footer__top">
       <div class="footer__brand">
-        {{ logo_mark_light }}
+        {{#if logo_lockup_light}}{{ logo_lockup_light }}{{else}}{{ logo_mark_light }}{{/if}}
         <p class="footer__note">{{ footer_note|e }}</p>
         <ul class="social">{{ social_links }}</ul>
       </div>

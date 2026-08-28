@@ -2,16 +2,36 @@
 
 ## Logotypes
 
-Déposez ici vos fichiers de marque ; le générateur les détecte automatiquement
-et remplace les substituts en CSS :
+Déposez vos fichiers de marque ici : le générateur les détecte au moment de la
+construction et remplace les substituts composés en CSS. **SVG de préférence**
+(net à toutes les tailles) ; PNG, WebP et JPEG sont également acceptés.
 
-| Fichier              | Usage                              | Taille conseillée |
-|----------------------|------------------------------------|-------------------|
-| `logo-mark.png`      | Pastille ronde (en-tête, pied)     | 176 × 176 px      |
-| `logo-wordmark.png`  | Logotype « THE CONJONCTURE REVIEW »| hauteur 88 px     |
+### Option A — un seul fichier (recommandé)
 
-Sans ces fichiers, le site affiche un substitut typographique (pastille « TCR »
-et logotype composé dans la police d'affichage).
+| Fichier | Usage |
+|---|---|
+| `logo-lockup.svg` | verrouillage complet : pastille + logotype + accroche |
+
+C'est le visuel horizontal complet. Il s'affiche dans l'en-tête et dans le pied
+de page. Un logo **monochrome foncé sur fond transparent** est éclairci
+automatiquement sur les fonds sombres — inutile de fournir une seconde version.
+
+Ajoutez `logo-lockup-light.svg` seulement si vous disposez d'une version claire
+dessinée pour les fonds sombres : elle remplacera alors l'inversion automatique.
+
+### Option B — éléments séparés
+
+| Fichier | Usage | Taille conseillée |
+|---|---|---|
+| `logo-mark.png` | pastille ronde seule | 176 × 176 px |
+| `logo-wordmark.png` | logotype « THE CONJONCTURE REVIEW » | hauteur 88 px |
+
+Utilisés uniquement si `logo-lockup.*` est absent. L'accroche est alors composée
+en texte, à partir de `tagline` dans `site.json`.
+
+> **Fond transparent indispensable.** Un PNG à fond blanc apparaîtra comme un
+> rectangle blanc en thème sombre, et l'éclaircissement automatique le rendra
+> illisible.
 
 ## Visuels d'articles
 
